@@ -16,11 +16,13 @@ A full overview of the database architecture and development can be read in our 
 
 ## Repository Layout
 
-|— models/
+The repository is organised into the following subdirectories:
 
-|	|—core_model.mwb
+*	*configs:* contains the YAML maps linking each layer.
+*	*models:* contains the EER models for each schema, built in MySQL Workbench
+*	*schemas:* contains the SQL schema for each layer
+*	*source:* contains the ETL loaders for the physical and analysis layer, the unified CLI loader for data storage, all Python formulas and helper functions, and Python scripts for formatting and storing data into most Core tables, based on the Excel data collection templates (see Related Work).
 
-|	|—phys_model.mwb
 
 ## CLI Loading Instructions
 Data storage is managed through the unified cli.py script for all schemas. The core layer is the authoritative source where all new data must be loaded first. The Physical and Analysis layers are then semi-automatically populated from Core via mapped formulas and lookups.
@@ -32,6 +34,7 @@ To run cli.py, clone or download the whole directory from this repository to you
 Storage is order-sensitive to satisfy MySQL key constraints (parent-child). For the core layer, start by loading the material properties, then the site data, followed by the element-specific templates. 
 
 python source/cli.py --host <HOST> --port <PORT> --user <USER> --password <PASSWORD> load-core --db element_database_core --element <ELEMENT> --file data/excel_file_path.xlsx
+
 Replace all <ELEMENT> fields with the relevant element type being loaded (all lowercase): materials, site, wall, beam, column, slab, or hcs. Material libraries only need to be loaded once at the beginning. 
 
 **2.	Physical Layer**
@@ -42,7 +45,7 @@ python source/cli.py --host <HOST> --port <PORT> --user <USER> --password <PASSW
 
 python source/cli.py --host <HOST> --port <PORT> --user <USER> --password <PASSWORD> load-anal --db_core element_database_core --db_phys element_database_phys --db_anal element_database_anal --mapping configs/anal_map.yml
 
-Substitute all <> marked fields with the database characteristics defined when installing MySQL. 
+*Substitute all <> marked fields with the database characteristics defined when installing MySQL*
 
 ## Dependencies
 
@@ -68,5 +71,6 @@ Dr. Ben Matthews: b.j.m.matthews@tue.nl
 Ir. Marcel Vullings: marcel.vullings@tno.nl
 
 This project has received funding from the European Union’s Horizon 2020 research and innovation programme under Grant Agreement No 958200. 
-Disclaimer: The content presented herein reflects the authors’ views. The European Commission is not responsible for any use that may be made of the information this publication contains. 
+
+*Disclaimer: The content presented herein reflects the authors’ views. The European Commission is not responsible for any use that may be made of the information this publication contains.*
 
