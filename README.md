@@ -67,7 +67,9 @@ The datasets used to develop and validate the database described in the journal 
 
 ## Contact & Acknowledgements
 If you have any questions or would like to reach out to the researchers, please contact:
+
 Dr. Ben Matthews: b.j.m.matthews@tue.nl
+
 Ir. Marcel Vullings: marcel.vullings@tno.nl
 
 This project has received funding from the European Union’s Horizon 2020 research and innovation programme under Grant Agreement No 958200. 
