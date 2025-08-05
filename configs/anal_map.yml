@@ -1,0 +1,35 @@
+source_schema:               # "role: file_name" mapping
+  core: Core_Schema_v3.sql
+  phys: Phys_Schema_v1.sql
+target_schema: Anal_Schema_v1.sql
+
+#----------------------------------------------------------------------------------------#
+#                          TABLE-LEVEL COLUMN -> FORMULA MAPPINGS 
+
+#                                       CAPACITY TABLES
+#----------------------------------------------------------------------------------------#
+Wall_Capacity:
+  pk: Product_ID
+
+
+Beam_Capacity:
+  pk: Product_ID
+  columns:
+    bending_pos_kN:
+      formula: beam_bending_pos_kN
+      args: [ fck_MPa, fyk_MPa, b_mm, d_mm, dp_mm, As1_mm2, As2_mm2 ]
+
+Column_Capacity:
+  pk: Product_ID
+
+
+1W_Slab_Capacity:
+  pk: Product_ID
+
+
+2W_Slab_Capacity:
+  pk: Product_ID
+
+
+HCS_Capacity:
+  pk: Product_ID
