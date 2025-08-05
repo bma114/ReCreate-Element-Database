@@ -16,8 +16,10 @@ A full overview of the database architecture and development can be read in our 
 
 ## Repository Layout
 
-|— models/                # EER models for each layer
+|— models/
+
 |	|—core_model.mwb
+
 |	|—phys_model.mwb
 
 ## CLI Loading Instructions
@@ -26,15 +28,18 @@ Data storage is managed through the unified cli.py script for all schemas. The c
 To run cli.py, clone or download the whole directory from this repository to your local system. Next, open a terminal and navigate to the directory path for the downloaded package. The current data collection workflow includes XLSX templates for each element type, which are published on Zenodo (see Related Work). Run the following commands to load data from the Excel data templates into MySQL for each layer:
 
 **1.	Core Layer**
+
 Storage is order-sensitive to satisfy MySQL key constraints (parent-child). For the core layer, start by loading the material properties, then the site data, followed by the element-specific templates. 
 
 python source/cli.py --host <HOST> --port <PORT> --user <USER> --password <PASSWORD> load-core --db element_database_core --element <ELEMENT> --file data/excel_file_path.xlsx
 Replace all <ELEMENT> fields with the relevant element type being loaded (all lowercase): materials, site, wall, beam, column, slab, or hcs. Material libraries only need to be loaded once at the beginning. 
 
 **2.	Physical Layer**
+
 python source/cli.py --host <HOST> --port <PORT> --user <USER> --password <PASSWORD> load-phys --db_core element_database_core --db_phys element_database_phys --mapping configs/phys_map.yml --element <ELEMENT> 
 
 **3.	Analysis Layer**
+
 python source/cli.py --host <HOST> --port <PORT> --user <USER> --password <PASSWORD> load-anal --db_core element_database_core --db_phys element_database_phys --db_anal element_database_anal --mapping configs/anal_map.yml
 
 Substitute all <> marked fields with the database characteristics defined when installing MySQL. 
