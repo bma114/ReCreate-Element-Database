@@ -11,9 +11,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema element_database_core
 -- -----------------------------------------------------
--- Drop existing database if it exists
-DROP DATABASE IF EXISTS `element_database_core`;
-
 CREATE SCHEMA IF NOT EXISTS `element_database_core` DEFAULT CHARACTER SET utf8 ;
 USE `element_database_core` ;
 
@@ -1167,6 +1164,8 @@ CREATE TABLE IF NOT EXISTS `element_database_core`.`Durability_Assessment` (
   `Element_ID` CHAR(36) NOT NULL,
   `Material_Age` YEAR NULL,
   `Cover_Depth` FLOAT NULL,
+  `Electrical_Resistivity` FLOAT NULL,
+  `Permeability` FLOAT NULL,
   `Ave_Carbonation_Depth` FLOAT NULL,
   `Max_Carbonation_Depth` FLOAT NULL,
   `Corrosion_Rate` FLOAT NULL,
@@ -1200,6 +1199,8 @@ CREATE TABLE IF NOT EXISTS `element_database_core`.`Concrete_Testing` (
   `Elastic_Modulus` FLOAT NULL,
   `Ult_Strain` FLOAT NULL,
   `Max_Agg_Size` FLOAT NULL,
+  `W/C_Ratio` FLOAT NULL,
+  `Air_Content` FLOAT NULL,
   `Density` FLOAT NULL,
   `Notes` TEXT NULL,
   PRIMARY KEY (`Test_Region_ID`, `Element_ID`),
